@@ -8,6 +8,7 @@ import {
   Text,
   Image
 } from 'react-native';
+import utilityMethods from '../../utility/utilityMethods';
 
 class PostHeader extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class PostHeader extends Component {
       		<Image source={{ uri: `https:${postInfo.member.avatar_normal}` }} style={{width: 16, height: 16, borderRadius: 8}}/>
       		<Text style={{marginLeft: 5, fontSize: 12}}>{postInfo.member.username}</Text>
       		<View style={{justifyContent: 'center', alignItems: 'flex-end', flex: 1}}>
-      			<Text style={{fontSize: 12}}>{`${postInfo.last_modified}，${postInfo.replies}回复`}</Text>
+      			<Text style={{fontSize: 12}}>{`${utilityMethods.formatTime(postInfo.last_modified)}，${postInfo.replies}回复`}</Text>
       		</View>
       	</View>
         <Text style={{fontSize: 14, marginBottom: 5, marginTop: 20}}>{postInfo.content}</Text>
