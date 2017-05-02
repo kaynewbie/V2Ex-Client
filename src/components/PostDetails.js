@@ -114,7 +114,7 @@ class PostDetails extends Component {
 }
 
 const styles = StyleSheet.create({
-
+	
 });
 
 

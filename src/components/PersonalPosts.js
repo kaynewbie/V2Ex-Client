@@ -88,20 +88,22 @@ class PersonalPosts extends Component {
       <TouchableHighlight onPress={() => { 
         this._cellClicked(rowData, rowId);
       }}>
-        <View style={styles.row}>
-          <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-around'}}>
-            <Text style={{flex: 1, fontSize: 16, color: 'black'}}>{rowData.title}</Text>
-            <Image 
-              source={{uri: global.schemeName+':'+rowData.member.avatar_normal}}
-              style={styles.thumb}
-            />
-          </View>
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 5}}>
-            <Text style={{fontSize: 10, color: '#696969', width: 200}}>{utilityMethods.formatTime(rowData.last_modified)}</Text>
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-              <Text style={{fontSize: 10, color: '#696969'}}>{rowData.member.username}</Text>
-              <View style={{justifyContent: 'center', marginLeft: 3, backgroundColor: '#328ac2', paddingLeft: 3, paddingRight: 3, borderRadius: 2}}>
-                <Text style={{fontSize: 10, color: '#f7f9fb'}}>{rowData.node.title}</Text>
+        <View style={{backgroundColor: 'white'}}>
+          <View style={[styles.row, styles.borderBottom]}>
+            <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-around'}}>
+              <Text style={{flex: 1, fontSize: 16, color: 'black'}}>{rowData.title}</Text>
+              <Image 
+                source={{uri: global.schemeName+':'+rowData.member.avatar_normal}}
+                style={styles.thumb}
+              />
+            </View>
+            <View style={{flex: 1, flexDirection: 'row', marginTop: 5}}>
+              <Text style={{fontSize: 10, color: '#696969', width: 200}}>{utilityMethods.formatTime(rowData.last_modified)}</Text>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{fontSize: 10, color: '#696969'}}>{rowData.member.username}</Text>
+                <View style={{justifyContent: 'center', marginLeft: 3, backgroundColor: '#328ac2', paddingLeft: 3, paddingRight: 3, borderRadius: 2}}>
+                  <Text style={{fontSize: 10, color: '#f7f9fb'}}>{rowData.node.title}</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -111,15 +113,17 @@ class PersonalPosts extends Component {
   }
 
   _cellClicked(rowData, rowId) {
-
+    const { navigate } = this.props.navigation;
+    navigate('PostDetails', { postInfo: rowData });
   }
 }
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'column',
     justifyContent: 'center',
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 10,
     backgroundColor: '#F6F6F6',
   },
   thumb: {
@@ -127,6 +131,12 @@ const styles = StyleSheet.create({
     height: 25,
     borderRadius: 3
   },
+  borderBottom: {
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 0.5,
+    borderColor: '#C8C7CC',
+    marginLeft: 8
+  }
 });
 
 

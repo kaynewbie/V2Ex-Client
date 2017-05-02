@@ -84,8 +84,8 @@ class NodesCatalog extends Component {
 
   _renderHeader(sectionData, sectionId) {
   	return (
-      <View style={{height: 20, width: Dimensions.get('window').width, justifyContent: 'flex-end', paddingLeft: 10, backgroundColor: '#e4e3eb'}}>
-        <Text style={{fontSize: 14}}>{headerTitles[sectionId]}</Text>
+      <View style={{height: 20, width: Dimensions.get('window').width, justifyContent: 'center', paddingLeft: 10, backgroundColor: '#e4e3eb'}}>
+        <Text style={{fontSize: 14, fontWeight: 'bold'}}>{headerTitles[sectionId]}</Text>
       </View>
     );
   }
@@ -105,7 +105,7 @@ class NodesCatalog extends Component {
    */
   _nodeSelected(rowData) {
   	const { navigate } = this.props.navigation;
-  	navigate('PersonalPosts', rowData)
+  	navigate('PersonalPosts', rowData);
   }
 }
 

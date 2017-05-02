@@ -73,24 +73,26 @@ class tabItemFirst extends Component {
 			<TouchableHighlight onPress={() => { 
 				this._cellClicked(rowData, rowId) 
 			}}>
-				<View style={styles.row}>
-					<View style={{flex: 1, flexDirection: 'row-reverse', alignItems: 'flex-start'}}>
-						<Image 
-							source={{uri: "https:" + rowData.member.avatar_normal}}
-							style={styles.thumb}
-						/>
-						<Text 
-							style={{fontSize: 16, color: 'black', flex: 1}}
-						>
-							{rowData.title}
-						</Text>
-					</View>
-					<View style={{flex: 1, flexDirection: 'row', marginTop: 5}}>
-						<Text style={{fontSize: 10, color: '#696969', width: 100}}>{timeLog}</Text>
-						<View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-							<Text style={{fontSize: 10, color: '#696969'}}>{rowData.member.username}</Text>
-							<View style={{justifyContent: 'center', marginLeft: 3, backgroundColor: '#328ac2', paddingLeft: 3, paddingRight: 3, borderRadius: 2}}>
-								<Text style={{fontSize: 10, color: '#f7f9fb'}}>{rowData.node.title}</Text>
+				<View style={{flex: 1, backgroundColor: 'white'}}>
+					<View style={[styles.row, styles.borderBottom]}>
+						<View style={{flex: 1, flexDirection: 'row-reverse', alignItems: 'flex-start'}}>
+							<Image 
+								source={{uri: "https:" + rowData.member.avatar_normal}}
+								style={styles.thumb}
+							/>
+							<Text 
+								style={{fontSize: 16, color: 'black', flex: 1}}
+							>
+								{rowData.title}
+							</Text>
+						</View>
+						<View style={{flex: 1, flexDirection: 'row', marginTop: 5}}>
+							<Text style={{fontSize: 10, color: '#696969', width: 100}}>{timeLog}</Text>
+							<View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+								<Text style={{fontSize: 10, color: '#696969'}}>{rowData.member.username}</Text>
+								<View style={{justifyContent: 'center', marginLeft: 3, backgroundColor: '#328ac2', paddingLeft: 3, paddingRight: 3, borderRadius: 2}}>
+									<Text style={{fontSize: 10, color: '#f7f9fb'}}>{rowData.node.title}</Text>
+								</View>
 							</View>
 						</View>
 					</View>
@@ -301,10 +303,11 @@ const styles = StyleSheet.create({
 		height: 26,
 	},
 	row: {
-		flexDirection: 'column',
 		justifyContent: 'center',
-		padding: 10,
-		backgroundColor: '#F6F6F6',
+		paddingTop: 10,
+		paddingBottom: 10,
+		paddingRight: 10,
+		backgroundColor: '#FFFFFF',
 	},
 	thumb: {
 		width: 25,
@@ -318,6 +321,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		borderRadius: 2,
 	},
+	borderBottom: {
+		backgroundColor: '#FFFFFF',
+		borderBottomWidth: 0.5,
+		borderColor: '#C8C7CC',
+		marginLeft: 8
+	}
 });
 
 

@@ -19,6 +19,7 @@ import UtilityMethods from '../utility/utilityMethods';
 
 // username=
 const userProfileURL = "https://www.v2ex.com/api/members/show.json";
+const v2exProfileURL = "http://www.v2ex.com/api/site/stats.json";
 
 const write_user_error = "write_user_error";
 const read_user_error = "read_user_error";
@@ -83,6 +84,8 @@ class tabItemSecond extends Component {
 				});
 			}
 		});
+
+
 	}
 
 	/**
@@ -140,8 +143,9 @@ class tabItemSecond extends Component {
 
 	_profileHeaderClicked() {
 		if (this.state.isLogin) {
-			let userInfo = this.state.data;
-			AsyncStorage.removeItem('v2ex' + userInfo.id, (error) => {
+			let userInfo = this.state.data[0][0];
+			let userKey = 'v2ex' + userInfo.id;
+			AsyncStorage.removeItem(userKey, (error) => {
 				if (error) {
 					console.log(remove_user_error + error);
 				}
@@ -166,19 +170,21 @@ class tabItemSecond extends Component {
 						style={{flex: 1, flexDirection: 'row'}}
 						onPress={this._profileHeaderClicked.bind(this)}
 					>
-						<View style={{flex: 1, flexDirection: 'row'}}>
-							<View style={{width: 80, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8}}>
-								<Image
-									style={{height: 64}}
-									source={{uri: global.schemeName+':'+rowData.avatar_normal}}
-								/>
-							</View>
-							<View style={{flex: 1, paddingTop: 8, paddingBottom: 8, paddingRight: 8}}>
-								<View style={{justifyContent: 'center', flex: 1}}>
-									<Text style={{fontSize: 16, fontWeight: 'bold'}}>{rowData.username}</Text>
+						<View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+							<View style={[{flex: 1, flexDirection: 'row'}, styles.borderBottom]}>
+								<View style={{width: 72, paddingTop: 8, paddingBottom: 8}}>
+									<Image
+										style={{height: 64, width: 64}}
+										source={{uri: global.schemeName+':'+rowData.avatar_normal}}
+									/>
 								</View>
-								<View style={{justifyContent: 'center', flex: 1}}>
-									<Text>{rowData.tagline}</Text>
+								<View style={{flex: 1, paddingTop: 8, paddingBottom: 8, paddingRight: 8}}>
+									<View style={{justifyContent: 'center', flex: 1}}>
+										<Text style={{fontSize: 16, fontWeight: 'bold'}}>{rowData.username}</Text>
+									</View>
+									<View style={{justifyContent: 'center', flex: 1}}>
+										<Text>{rowData.tagline}</Text>
+									</View>
 								</View>
 							</View>
 						</View>
@@ -186,20 +192,24 @@ class tabItemSecond extends Component {
 				);
 			} else {
 				return (
-					<View style={{flex: 1, alignItems: 'center', borderTopWidth: 0.5, borderBottomWidth: 0.5}}>
-						<Text style={{textAlign: 'center'}}>登录账号，获得更多体验</Text>
-						<Button 
-							title={'点击登录'}
-							onPress={this._profileHeaderClicked.bind(this)}
-						/>
+					<View style={{flex: 1, backgroundColor: 'white'}}>
+						<View style={[{flex: 1, alignItems: 'center'}, styles.borderBottom]}>
+							<Text style={{textAlign: 'center', paddingTop: 10}}>登录账号，获得更多体验</Text>
+							<Button 
+								title={'点击登录'}
+								onPress={this._profileHeaderClicked.bind(this)}
+							/>
+						</View>
 					</View>
 				);
 			}
 		} else if (sectionId === "1") {
 			return (
 				<TouchableHighlight onPress={() => {this._cellClickedAtRow.bind(this)(rowId)}}>
-					<View style={{borderBottomWidth: 0.2, paddingTop: 8, paddingLeft: 8, paddingBottom: 8}}>
-						<Text>{rowData}</Text>
+					<View style={{flex: 1, backgroundColor: 'white'}}>
+						<View style={[{paddingTop: 8, paddingBottom: 8, flex: 1}, styles.borderBottom]}>
+							<Text>{rowData}</Text>
+						</View>
 					</View>
 				</TouchableHighlight>
 			);
@@ -264,6 +274,12 @@ const styles = StyleSheet.create({
 			height: 0.5,
 		},
 	},
+	borderBottom: {
+		backgroundColor: '#FFFFFF',
+		borderBottomWidth: 0.5,
+		borderColor: '#C8C7CC',
+		marginLeft: 8
+	}
 });
 
 

@@ -18,7 +18,7 @@ class PostHeader extends Component {
   render() {
     let postInfo = this.props.postInfo;
     return (
-      <View style={{flex: 1, paddingLeft: 10, paddingTop: 5, paddingRight: 10, paddingBottom: 5}}>
+      <View style={{flex: 1, paddingLeft: 10, paddingTop: 5, paddingRight: 10, paddingBottom: 5, backgroundColor: 'white'}}>
       	<Text style={{fontSize: 16, marginBottom: 5}}>{postInfo.title}</Text>
       	<View style={{flexDirection: 'row', alignItems: 'center'}}>
       		<Image source={{ uri: `https:${postInfo.member.avatar_normal}` }} style={{width: 16, height: 16, borderRadius: 8}}/>
